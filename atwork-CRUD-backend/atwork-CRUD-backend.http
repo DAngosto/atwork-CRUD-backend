@@ -1,0 +1,6 @@
+@atwork_CRUD_backend_HostAddress = http://localhost:5240
+
+GET {{atwork_CRUD_backend_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
