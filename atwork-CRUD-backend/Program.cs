@@ -11,11 +11,13 @@ builder.Services.AddMediatRAndFluentValidatorServices();
 builder.Services.RegisterMapsterConfiguration();
 builder.Services.AddServicesConfiguration();
 builder.Services.AddInMemoryDatabase();
+builder.Services.AddSettingsConfiguration(builder.Configuration);
+builder.Services.AddSerilogConfiguration(builder.Configuration);
+builder.Services.AddAuthConfiguration(builder.Configuration);
+builder.Services.AddSwaggerGenWithAuth();
 
-builder.Services.AddSerilog(lc => lc.ReadFrom.Configuration(builder.Configuration));
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
 
 var app = builder.Build();
 if (app.Environment.IsDevelopment())
@@ -39,5 +41,8 @@ using (var scope = app.Services.CreateScope())
 
 // Middlewares
 app.UseMiddleware<ExceptionHandlerMiddleware>();
+
+// Auth
+app.UseAuthorization();
 
 app.Run();

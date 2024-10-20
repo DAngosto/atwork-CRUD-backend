@@ -5,6 +5,7 @@ namespace atwork_CRUD_backend_Infraestructure
 {
     public class AppDbContext : DbContext
     {
+        public DbSet<User> Users { get; set; }
         public DbSet<Employee> Employees { get; set; }
 
         public AppDbContext(DbContextOptions<AppDbContext> options) : base(options)
@@ -14,6 +15,10 @@ namespace atwork_CRUD_backend_Infraestructure
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
+
+            modelBuilder.Entity<User>().HasData(
+                new User { Id = Guid.Parse("52DE8049-3CD1-4904-808E-9E120D213931"), Username = "admin", Password = "pZIbUoIfztgTjqI6PX9LkW7J2ywKhV4ulf8jsaJxJ2A=:qzTYgezhYQ3fMuCB2fIIYw==", Email = "admin@atwork.ai" }
+            );
 
             modelBuilder.Entity<Employee>().HasData(
                 new Employee { Id = Guid.Parse("52DE8049-3CD1-4904-808E-9E120D213931"), FirstName = "Daniel", LastName = "Angosto", SecondLastName = "Martinez", Email = "d.angosto.martinez@atwork.ai", JobTitle = "Full Stack Developer", WellnessScore = 90, ProductivityScore = 85, LastCheckIn = DateTime.Now },

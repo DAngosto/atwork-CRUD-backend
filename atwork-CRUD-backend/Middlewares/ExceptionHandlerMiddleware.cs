@@ -33,7 +33,7 @@ namespace atwork_CRUD_backend.Middlewares
             {
                 ValidationException _ => new ExceptionResponse(System.Net.HttpStatusCode.BadRequest, $"Invalid request error ocurred: {exception.Message}"),
                 KeyNotFoundException _ => new ExceptionResponse(System.Net.HttpStatusCode.NotFound, $"Not found error ocurred: {exception.Message}"),
-                UnauthorizedAccessException _ => new ExceptionResponse(System.Net.HttpStatusCode.InternalServerError, $"Unauthorized access error ocurred: {exception.Message}"),
+                UnauthorizedAccessException _ => new ExceptionResponse(System.Net.HttpStatusCode.Unauthorized, $"Unauthorized access error ocurred: {exception.Message}"),
                 _ => new ExceptionResponse(System.Net.HttpStatusCode.InternalServerError, $"Unexpected error ocurred: {exception.Message}"),
             };
 

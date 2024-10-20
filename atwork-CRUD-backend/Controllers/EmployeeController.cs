@@ -2,12 +2,14 @@ using atwork_CRUD_backend_Application.DTOs;
 using atwork_CRUD_backend_Application.Exceptions;
 using atwork_CRUD_backend_Application.Queries.Employee;
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Net;
 
 namespace atwork_CRUD_backend.Controllers
 {
     [ApiController]
+    [Authorize]
     [Route("[controller]")]
     public class EmployeeController : ControllerBase
     {
@@ -24,6 +26,7 @@ namespace atwork_CRUD_backend.Controllers
         [ProducesResponseType(typeof(EmployeeDto), (int)HttpStatusCode.OK)]
         [ProducesResponseType(typeof(ExceptionResponse), (int)HttpStatusCode.NotFound)]
         [ProducesResponseType(typeof(ExceptionResponse), (int)HttpStatusCode.BadRequest)]
+        [ProducesResponseType((int)HttpStatusCode.Unauthorized)]
         [ProducesResponseType(typeof(ExceptionResponse), (int)HttpStatusCode.InternalServerError)]
         public async Task<IActionResult> GetEmployee(Guid employeeId)
         {
