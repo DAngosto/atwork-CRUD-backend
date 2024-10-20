@@ -18,9 +18,9 @@ namespace atwork_CRUD_backend_Infraestructure.Repositories
             return await _context.Users.AsNoTracking().ToListAsync(cancellationToken);
         }
 
-        public async Task<User?> GetByUsernameAsync(string username, CancellationToken cancellationToken)
+        public async Task<User?> GetByEmailAsync(string email, CancellationToken cancellationToken)
         {
-            return await _context.Users.AsNoTracking().FirstOrDefaultAsync(x => x.Username == username, cancellationToken);
+            return await _context.Users.AsNoTracking().FirstOrDefaultAsync(x => x.Email == email, cancellationToken);
         }
 
         public async Task<bool> AddAsync(User user, bool saveChanges, CancellationToken cancellationToken)

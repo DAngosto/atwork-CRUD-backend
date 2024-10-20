@@ -17,7 +17,7 @@ namespace atwork_CRUD_backend_Infraestructure
             base.OnModelCreating(modelBuilder);
 
             modelBuilder.Entity<User>().HasData(
-                new User { Id = Guid.Parse("52DE8049-3CD1-4904-808E-9E120D213931"), Username = "admin", Password = "pZIbUoIfztgTjqI6PX9LkW7J2ywKhV4ulf8jsaJxJ2A=:qzTYgezhYQ3fMuCB2fIIYw==", Email = "admin@atwork.ai" }
+                new User { Id = Guid.Parse("52DE8049-3CD1-4904-808E-9E120D213931"), Password = "pZIbUoIfztgTjqI6PX9LkW7J2ywKhV4ulf8jsaJxJ2A=:qzTYgezhYQ3fMuCB2fIIYw==", Email = "admin@atwork.ai" }
             );
 
             modelBuilder.Entity<Employee>().HasData(

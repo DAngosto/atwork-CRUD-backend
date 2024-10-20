@@ -9,7 +9,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace atwork_CRUD_backend_Application.Queries.Employee
 {
-    public class RegisterCommandHandler : IRequestHandler<RegisterCommand, string>
+    public class RegisterCommandHandler : IRequestHandler<RegisterCommand, RegisterDto>
     {
         private readonly IUserRepository _userRepository;
         private readonly IPasswordService _passwordService;
@@ -22,14 +22,13 @@ namespace atwork_CRUD_backend_Application.Queries.Employee
             _tokenProviderService = tokenProviderService;
         }
 
-        public async Task<string> Handle(RegisterCommand command, CancellationToken cancellationToken)
+        public async Task<RegisterDto> Handle(RegisterCommand command, CancellationToken cancellationToken)
         {
             var newUser = new User()
             {
                 Id = Guid.NewGuid(),
-                Username = command.RegisterRequest.Username,
-                Password = _passwordService.GeneratePasswordHash(command.RegisterRequest.Password),
                 Email = command.RegisterRequest.Email,
+                Password = _passwordService.GeneratePasswordHash(command.RegisterRequest.Password),
             };
 
             bool created = await _userRepository.AddAsync(newUser, true, cancellationToken);
@@ -38,7 +37,7 @@ namespace atwork_CRUD_backend_Application.Queries.Employee
                 throw new Exception(UserErrors.UserCreationUnavailable());
             }
 
-            return _tokenProviderService.Create(newUser);
+            return new RegisterDto() { Token = _tokenProviderService.Create(newUser) };
         }
     }
 }

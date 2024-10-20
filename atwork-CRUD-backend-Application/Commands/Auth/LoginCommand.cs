@@ -2,7 +2,7 @@
 
 namespace atwork_CRUD_backend_Application.Commands.Auth
 {
-    public class LoginCommand : ICommand<string>
+    public class LoginCommand : ICommand<LoginDto>
     {
         public LoginRequest LoginRequest { get; }
 

@@ -1,4 +1,5 @@
 ﻿using atwork_CRUD_backend_Application.Commands.Auth;
+using atwork_CRUD_backend_Application.DTOs;
 using atwork_CRUD_backend_Domain.Entities;
 using atwork_CRUD_backend_Domain.Repositories;
 using atwork_CRUD_backend_Domain.Services;
@@ -6,7 +7,7 @@ using MediatR;
 
 namespace atwork_CRUD_backend_Application.Queries.Employee
 {
-    public class LoginCommandHandler : IRequestHandler<LoginCommand, string>
+    public class LoginCommandHandler : IRequestHandler<LoginCommand, LoginDto>
     {
         private readonly IUserRepository _userRepository;
         private readonly IPasswordService _passwordService;
@@ -19,9 +20,9 @@ namespace atwork_CRUD_backend_Application.Queries.Employee
             _tokenProviderService = tokenProviderService;
         }
 
-        public async Task<string> Handle(LoginCommand command, CancellationToken cancellationToken)
+        public async Task<LoginDto> Handle(LoginCommand command, CancellationToken cancellationToken)
         {
-            var user = await _userRepository.GetByUsernameAsync(command.LoginRequest.Username, cancellationToken);
+            var user = await _userRepository.GetByEmailAsync(command.LoginRequest.Email, cancellationToken);
             if (user is null)
                 throw new UnauthorizedAccessException(UserErrors.InvalidUsernameOrPassword());
 
@@ -31,7 +32,7 @@ namespace atwork_CRUD_backend_Application.Queries.Employee
                 throw new UnauthorizedAccessException(UserErrors.InvalidUsernameOrPassword());
             }
 
-            return _tokenProviderService.Create(user);
+            return new LoginDto() { Token = _tokenProviderService.Create(user) };
         }
     }
 }

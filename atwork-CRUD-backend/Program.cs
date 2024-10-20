@@ -28,9 +28,9 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
-app.UseAuthorization();
-
 app.MapControllers();
+
+app.UseCors("AllowFrontEndOrigins");
 
 // Database seed
 using (var scope = app.Services.CreateScope())

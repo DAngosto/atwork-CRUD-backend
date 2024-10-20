@@ -21,7 +21,7 @@ namespace atwork_CRUD_backend.Controllers
         }
 
         [HttpPost("login")]
-        [ProducesResponseType(typeof(string), (int)HttpStatusCode.OK)]
+        [ProducesResponseType(typeof(LoginDto), (int)HttpStatusCode.OK)]
         [ProducesResponseType(typeof(ExceptionResponse), (int)HttpStatusCode.NotFound)]
         [ProducesResponseType(typeof(ExceptionResponse), (int)HttpStatusCode.BadRequest)]
         [ProducesResponseType(typeof(ExceptionResponse), (int)HttpStatusCode.InternalServerError)]
@@ -33,7 +33,7 @@ namespace atwork_CRUD_backend.Controllers
         }
 
         [HttpPost("register")]
-        [ProducesResponseType(typeof(string), (int)HttpStatusCode.OK)]
+        [ProducesResponseType(typeof(RegisterDto), (int)HttpStatusCode.OK)]
         [ProducesResponseType(typeof(ExceptionResponse), (int)HttpStatusCode.NotFound)]
         [ProducesResponseType(typeof(ExceptionResponse), (int)HttpStatusCode.BadRequest)]
         [ProducesResponseType(typeof(ExceptionResponse), (int)HttpStatusCode.InternalServerError)]

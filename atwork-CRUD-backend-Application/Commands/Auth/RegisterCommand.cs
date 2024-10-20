@@ -2,7 +2,7 @@
 
 namespace atwork_CRUD_backend_Application.Commands.Auth
 {
-    public class RegisterCommand : ICommand<string>
+    public class RegisterCommand : ICommand<RegisterDto>
     {
         public RegisterRequest RegisterRequest { get; }
 

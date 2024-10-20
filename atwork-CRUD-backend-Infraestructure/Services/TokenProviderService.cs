@@ -35,7 +35,6 @@ namespace atwork_CRUD_backend_Infraestructure.Services
             {
                 Subject = new ClaimsIdentity([
                     new Claim(JwtRegisteredClaimNames.Sub, user.Id.ToString()),
-                    new Claim("username", user.Username),
                     new Claim(JwtRegisteredClaimNames.Email, user.Email),
                     ]),
                 Expires = DateTime.UtcNow.AddMinutes(_expirationInMinutes),
