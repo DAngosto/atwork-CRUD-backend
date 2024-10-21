@@ -34,5 +34,18 @@ namespace atwork_CRUD_backend.Controllers
             var result = await _mediator.Send(query);
             return Ok(result);
         }
+
+        [HttpGet("GetAll")]
+        [ProducesResponseType(typeof(GetAllEmployeesDto), (int)HttpStatusCode.OK)]
+        [ProducesResponseType(typeof(ExceptionResponse), (int)HttpStatusCode.NotFound)]
+        [ProducesResponseType(typeof(ExceptionResponse), (int)HttpStatusCode.BadRequest)]
+        [ProducesResponseType((int)HttpStatusCode.Unauthorized)]
+        [ProducesResponseType(typeof(ExceptionResponse), (int)HttpStatusCode.InternalServerError)]
+        public async Task<IActionResult> GetAll(int page = 0, int size = 10)
+        {
+            var query = new GetAllEmployeesQuery(page, size);
+            var result = await _mediator.Send(query);
+            return Ok(result);
+        }
     }
 }

@@ -13,9 +13,26 @@ namespace atwork_CRUD_backend_Infraestructure.Repositories
             _context = context;
         }
 
-        public async Task<List<Employee>> GetAllAsync(CancellationToken cancellationToken)
+        public async Task<List<Employee>> GetAllAsync(int? page, int? size, CancellationToken cancellationToken)
         {
-            return await _context.Employees.AsNoTracking().ToListAsync(cancellationToken);
+            var query = _context.Employees.AsNoTracking();
+
+            if (page.HasValue && size.HasValue)
+            {
+                query = query.Skip((page.Value-1) * size.Value);
+            }
+
+            if (size.HasValue)
+            {
+                query = query.Take(size.Value);
+            }
+
+            return await query.ToListAsync(cancellationToken);
+        }
+
+        public async Task<int> GetAllCountAsync(CancellationToken cancellationToken)
+        {
+            return await _context.Employees.AsNoTracking().CountAsync(cancellationToken);
         }
 
         public async Task<Employee?> GetByIdAsync(Guid id, CancellationToken cancellationToken)
