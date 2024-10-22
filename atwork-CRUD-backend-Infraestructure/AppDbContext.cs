@@ -121,7 +121,7 @@ namespace atwork_CRUD_backend_Infraestructure
                     ProductivityScore = 90,
                     Address = "123 Main St",
                     LastCheckIn = DateTime.Now,
-                    Phone = "555-1234",
+                    Phone = "654-456-453",
                     CountryId = countryId,
                     UserId = userId,
                     PictureUrl = "https://primefaces.org/cdn/primeng/images/demo/avatar/asiyajavayant.png"
@@ -138,7 +138,7 @@ namespace atwork_CRUD_backend_Infraestructure
                     ProductivityScore = 85,
                     Address = "456 Market St",
                     LastCheckIn = DateTime.Now,
-                    Phone = "555-5678",
+                    Phone = "654-456-453",
                     CountryId = countryId,
                     UserId = userId,
                     PictureUrl = "https://primefaces.org/cdn/primeng/images/demo/avatar/onyamalimba.png"
@@ -154,7 +154,7 @@ namespace atwork_CRUD_backend_Infraestructure
                     ProductivityScore = 88,
                     Address = "789 Elm St",
                     LastCheckIn = DateTime.Now,
-                    Phone = "555-8765",
+                    Phone = "654-456-453",
                     CountryId = countryId,
                     UserId = userId,
                     PictureUrl = "https://primefaces.org/cdn/primeng/images/demo/avatar/ionibowcher.png"
@@ -170,7 +170,7 @@ namespace atwork_CRUD_backend_Infraestructure
                     ProductivityScore = 80,
                     Address = "321 Oak St",
                     LastCheckIn = DateTime.Now,
-                    Phone = "555-2345",
+                    Phone = "654-456-453",
                     CountryId = countryId,
                     UserId = userId,
                     PictureUrl = "https://primefaces.org/cdn/primeng/images/demo/avatar/xuxuefeng.png"
@@ -186,7 +186,7 @@ namespace atwork_CRUD_backend_Infraestructure
                     ProductivityScore = 92,
                     Address = "654 Pine St",
                     LastCheckIn = DateTime.Now,
-                    Phone = "555-3456",
+                    Phone = "654-456-453",
                     CountryId = countryId,
                     UserId = userId
                 });
