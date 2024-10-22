@@ -1,3 +1,4 @@
+using atwork_CRUD_backend_Application.Commands.Employees;
 using atwork_CRUD_backend_Application.DTOs.Employees;
 using atwork_CRUD_backend_Application.Exceptions;
 using atwork_CRUD_backend_Application.Queries.Employees;
@@ -46,6 +47,27 @@ namespace atwork_CRUD_backend.Controllers
             var query = new GetAllEmployeesFromUserQuery(userId, page, size);
             var result = await _mediator.Send(query);
             return Ok(result);
+        }
+
+        [HttpPost]
+        [ProducesResponseType(typeof(EmployeeDto), (int)HttpStatusCode.Created)]
+        [ProducesResponseType(typeof(ExceptionResponse), (int)HttpStatusCode.NotFound)]
+        [ProducesResponseType(typeof(ExceptionResponse), (int)HttpStatusCode.BadRequest)]
+        [ProducesResponseType((int)HttpStatusCode.Unauthorized)]
+        [ProducesResponseType(typeof(ExceptionResponse), (int)HttpStatusCode.InternalServerError)]
+        public async Task<IActionResult> Create([FromBody] CreateEmployeeRequest request)
+        {
+            var command = new CreateEmployeeCommand(request);
+            var newEmployeeId = await _mediator.Send(command); 
+
+            var query = new GetEmployeeQuery(newEmployeeId);
+            var employeeDetails = await _mediator.Send(query);
+
+            return CreatedAtAction(
+                actionName: nameof(GetEmployee),
+                routeValues: new { employeeId = newEmployeeId },
+                value: employeeDetails
+            );
         }
     }
 }

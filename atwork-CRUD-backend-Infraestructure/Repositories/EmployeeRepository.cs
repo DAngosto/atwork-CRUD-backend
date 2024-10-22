@@ -37,7 +37,7 @@ namespace atwork_CRUD_backend_Infraestructure.Repositories
 
         public async Task<List<Employee>> GetAllFromUserAsync(Guid userId, int? page, int? size, CancellationToken cancellationToken)
         {
-            var query = _context.Employees.AsNoTracking().Where(x => x.UserId == userId);
+            var query = _context.Employees.AsNoTracking().Include(x => x.Country).Where(x => x.UserId == userId);
 
             if (page.HasValue && size.HasValue)
             {
@@ -59,7 +59,7 @@ namespace atwork_CRUD_backend_Infraestructure.Repositories
 
         public async Task<Employee?> GetByIdAsync(Guid id, CancellationToken cancellationToken)
         {
-            return await _context.Employees.AsNoTracking().FirstOrDefaultAsync(x => x.Id == id, cancellationToken);
+            return await _context.Employees.AsNoTracking().Include(x => x.Country).FirstOrDefaultAsync(x => x.Id == id, cancellationToken);
         }
 
         public async Task<bool> AddAsync(Employee employee, bool saveChanges, CancellationToken cancellationToken)
