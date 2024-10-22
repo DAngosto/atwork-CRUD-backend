@@ -29,6 +29,8 @@ namespace atwork_CRUD_backend_Application.Queries.Employee
                 Id = Guid.NewGuid(),
                 Email = command.RegisterRequest.Email,
                 Password = _passwordService.GeneratePasswordHash(command.RegisterRequest.Password),
+                Company = command.RegisterRequest.Company,
+                Phone = command.RegisterRequest.Phone
             };
 
             bool created = await _userRepository.AddAsync(newUser, true, cancellationToken);

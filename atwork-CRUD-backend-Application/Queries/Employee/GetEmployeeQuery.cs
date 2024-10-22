@@ -1,4 +1,4 @@
-﻿using atwork_CRUD_backend_Application.DTOs;
+﻿using atwork_CRUD_backend_Application.DTOs.Employee;
 
 namespace atwork_CRUD_backend_Application.Queries.Employee
 {

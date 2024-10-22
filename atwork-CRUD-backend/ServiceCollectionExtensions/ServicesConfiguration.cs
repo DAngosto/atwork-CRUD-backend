@@ -121,6 +121,7 @@ namespace atwork_CRUD_backend.ServiceCollectionExtensions
         {
             services.AddTransient<IEmployeeRepository, EmployeeRepository>();
             services.AddTransient<IUserRepository, UserRepository>();
+            services.AddTransient<ICountryRepository, CountryRepository>();
             services.AddSingleton<IPasswordService, PasswordService>();
             services.AddSingleton<ITokenProviderService, TokenProviderService>();
             return services;

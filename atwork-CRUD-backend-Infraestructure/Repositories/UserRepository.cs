@@ -18,6 +18,11 @@ namespace atwork_CRUD_backend_Infraestructure.Repositories
             return await _context.Users.AsNoTracking().ToListAsync(cancellationToken);
         }
 
+        public async Task<User?> GetByIdAsync(Guid id, CancellationToken cancellationToken)
+        {
+            return await _context.Users.AsNoTracking().Include(x => x.Employees).FirstOrDefaultAsync(x => x.Id == id, cancellationToken);
+        }
+
         public async Task<User?> GetByEmailAsync(string email, CancellationToken cancellationToken)
         {
             return await _context.Users.AsNoTracking().FirstOrDefaultAsync(x => x.Email == email, cancellationToken);

@@ -1,4 +1,4 @@
-﻿namespace atwork_CRUD_backend_Application.DTOs
+﻿namespace atwork_CRUD_backend_Application.DTOs.Employee
 {
     public class GetAllEmployeesDto
     {

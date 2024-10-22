@@ -10,6 +10,13 @@
         public string? JobTitle { get; set; }
         public int WellnessScore { get; set; } 
         public int ProductivityScore { get; set; }
+        public required string Address { get; set; }
         public DateTime LastCheckIn { get; set; }
+        public required string Phone { get; set; }
+        public string? PictureUrl { get; set; }
+        public Guid CountryId { get; set; }
+        public Country Country { get; set; }
+        public required Guid UserId { get; set; }
+        public User User { get; set; }
     }
 }
