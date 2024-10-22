@@ -10,8 +10,9 @@ namespace atwork_CRUD_backend.ServiceCollectionExtensions
         {
             TypeAdapterConfig<Employee, EmployeeDto>.NewConfig()
                 .Map(dest => dest.FullName, src => $"{src.FirstName} {src.LastName} {src.SecondLastName}")
-                .Map(dest => dest.CountryName, src => src.Country.Name)
-                .Map(dest => dest.CountryCode, src => src.Country.Code);
+                .Map(dest => dest.CountryId, src => src.Country!.Id)
+                .Map(dest => dest.CountryName, src => src.Country!.Name)
+                .Map(dest => dest.CountryCode, src => src.Country!.Code);
         }
     }
 }

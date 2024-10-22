@@ -69,5 +69,26 @@ namespace atwork_CRUD_backend.Controllers
                 value: employeeDetails
             );
         }
+
+        [HttpPut]
+        [ProducesResponseType(typeof(EmployeeDto), (int)HttpStatusCode.Created)]
+        [ProducesResponseType(typeof(ExceptionResponse), (int)HttpStatusCode.NotFound)]
+        [ProducesResponseType(typeof(ExceptionResponse), (int)HttpStatusCode.BadRequest)]
+        [ProducesResponseType((int)HttpStatusCode.Unauthorized)]
+        [ProducesResponseType(typeof(ExceptionResponse), (int)HttpStatusCode.InternalServerError)]
+        public async Task<IActionResult> Update([FromBody] UpdateEmployeeRequest request)
+        {
+            var command = new UpdateEmployeeCommand(request);
+            var newEmployeeId = await _mediator.Send(command);
+
+            var query = new GetEmployeeQuery(newEmployeeId);
+            var employeeDetails = await _mediator.Send(query);
+
+            return CreatedAtAction(
+                actionName: nameof(GetEmployee),
+                routeValues: new { employeeId = newEmployeeId },
+                value: employeeDetails
+            );
+        }
     }
 }
