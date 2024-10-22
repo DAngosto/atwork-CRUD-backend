@@ -71,7 +71,7 @@ namespace atwork_CRUD_backend.Controllers
         }
 
         [HttpPut]
-        [ProducesResponseType(typeof(EmployeeDto), (int)HttpStatusCode.Created)]
+        [ProducesResponseType(typeof(EmployeeDto), (int)HttpStatusCode.OK)]
         [ProducesResponseType(typeof(ExceptionResponse), (int)HttpStatusCode.NotFound)]
         [ProducesResponseType(typeof(ExceptionResponse), (int)HttpStatusCode.BadRequest)]
         [ProducesResponseType((int)HttpStatusCode.Unauthorized)]
@@ -89,6 +89,18 @@ namespace atwork_CRUD_backend.Controllers
                 routeValues: new { employeeId = newEmployeeId },
                 value: employeeDetails
             );
+        }
+
+        [HttpDelete]
+        [ProducesResponseType( (int)HttpStatusCode.NoContent)]
+        [ProducesResponseType(typeof(ExceptionResponse), (int)HttpStatusCode.BadRequest)]
+        [ProducesResponseType((int)HttpStatusCode.Unauthorized)]
+        [ProducesResponseType(typeof(ExceptionResponse), (int)HttpStatusCode.InternalServerError)]
+        public async Task<IActionResult> Delete([FromBody] DeleteEmployeesRequest request)
+        {
+            var command = new DeleteEmployeesCommand(request);
+            await _mediator.Send(command);
+            return NoContent();
         }
     }
 }

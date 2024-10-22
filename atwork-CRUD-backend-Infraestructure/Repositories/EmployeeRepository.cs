@@ -76,7 +76,7 @@ namespace atwork_CRUD_backend_Infraestructure.Repositories
             return (await _context.SaveChangesAsync(cancellationToken)) > 0;
         }
 
-        public async Task<bool> DeleteAsync(int id, CancellationToken cancellationToken)
+        public async Task<bool> DeleteAsync(Guid id, CancellationToken cancellationToken)
         {
             var employee = await _context.Employees.FindAsync(id);
             if (employee is not null)
