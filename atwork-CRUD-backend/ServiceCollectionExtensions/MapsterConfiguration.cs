@@ -1,4 +1,4 @@
-﻿using atwork_CRUD_backend_Application.DTOs.Employee;
+﻿using atwork_CRUD_backend_Application.DTOs.Employees;
 using atwork_CRUD_backend_Domain.Entities;
 using Mapster;
 

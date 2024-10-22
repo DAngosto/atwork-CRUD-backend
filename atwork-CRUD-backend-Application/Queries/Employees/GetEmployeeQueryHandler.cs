@@ -1,10 +1,10 @@
-﻿using atwork_CRUD_backend_Application.DTOs.Employee;
+﻿using atwork_CRUD_backend_Application.DTOs.Employees;
 using atwork_CRUD_backend_Domain.Entities;
 using atwork_CRUD_backend_Domain.Repositories;
 using Mapster;
 using MediatR;
 
-namespace atwork_CRUD_backend_Application.Queries.Employee
+namespace atwork_CRUD_backend_Application.Queries.Employees
 {
     public class GetEmployeeQueryHandler : IRequestHandler<GetEmployeeQuery, EmployeeDto>
     {

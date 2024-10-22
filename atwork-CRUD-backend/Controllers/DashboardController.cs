@@ -1,4 +1,4 @@
-using atwork_CRUD_backend_Application.DTOs.Employee;
+using atwork_CRUD_backend_Application.DTOs.Dashboard;
 using atwork_CRUD_backend_Application.Exceptions;
 using atwork_CRUD_backend_Application.Queries.Dashboard;
 using MediatR;
@@ -23,7 +23,7 @@ namespace atwork_CRUD_backend.Controllers
         }
 
         [HttpGet]
-        [ProducesResponseType(typeof(GetAllEmployeesDto), (int)HttpStatusCode.OK)]
+        [ProducesResponseType(typeof(DashboardDataDto), (int)HttpStatusCode.OK)]
         [ProducesResponseType(typeof(ExceptionResponse), (int)HttpStatusCode.NotFound)]
         [ProducesResponseType(typeof(ExceptionResponse), (int)HttpStatusCode.BadRequest)]
         [ProducesResponseType((int)HttpStatusCode.Unauthorized)]

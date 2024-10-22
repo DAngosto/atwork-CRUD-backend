@@ -1,6 +1,6 @@
-using atwork_CRUD_backend_Application.DTOs.Shared;
+using atwork_CRUD_backend_Application.DTOs.Users;
 using atwork_CRUD_backend_Application.Exceptions;
-using atwork_CRUD_backend_Application.Queries.Shared;
+using atwork_CRUD_backend_Application.Queries.Users;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -11,26 +11,26 @@ namespace atwork_CRUD_backend.Controllers
     [ApiController]
     [Authorize]
     [Route("[controller]")]
-    public class SharedController : ControllerBase
+    public class UsersController : ControllerBase
     {
-        private readonly ILogger<SharedController> _logger;
+        private readonly ILogger<UsersController> _logger;
         private readonly IMediator _mediator;
 
-        public SharedController(ILogger<SharedController> logger, IMediator mediator)
+        public UsersController(ILogger<UsersController> logger, IMediator mediator)
         {
             _logger = logger;
             _mediator = mediator;
         }
 
-        [HttpGet("GetAllCountries")]
-        [ProducesResponseType(typeof(CountryDto[]), (int)HttpStatusCode.OK)]
+        [HttpGet]
+        [ProducesResponseType(typeof(UserDto), (int)HttpStatusCode.OK)]
         [ProducesResponseType(typeof(ExceptionResponse), (int)HttpStatusCode.NotFound)]
         [ProducesResponseType(typeof(ExceptionResponse), (int)HttpStatusCode.BadRequest)]
         [ProducesResponseType((int)HttpStatusCode.Unauthorized)]
         [ProducesResponseType(typeof(ExceptionResponse), (int)HttpStatusCode.InternalServerError)]
-        public async Task<IActionResult> GetAllCountries()
+        public async Task<IActionResult> Get(Guid userId)
         {
-            var query = new GetAllCountriesQuery();
+            var query = new GetUserQuery(userId);
             var result = await _mediator.Send(query);
             return Ok(result);
         }

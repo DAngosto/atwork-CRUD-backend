@@ -1,5 +1,5 @@
 using atwork_CRUD_backend_Application.Commands.Auth;
-using atwork_CRUD_backend_Application.DTOs;
+using atwork_CRUD_backend_Application.DTOs.Auth;
 using atwork_CRUD_backend_Application.Exceptions;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;

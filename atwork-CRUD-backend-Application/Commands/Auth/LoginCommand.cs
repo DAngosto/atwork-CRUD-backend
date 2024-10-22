@@ -1,4 +1,4 @@
-﻿using atwork_CRUD_backend_Application.DTOs;
+﻿using atwork_CRUD_backend_Application.DTOs.Auth;
 
 namespace atwork_CRUD_backend_Application.Commands.Auth
 {

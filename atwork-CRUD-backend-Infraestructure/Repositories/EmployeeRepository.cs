@@ -35,6 +35,28 @@ namespace atwork_CRUD_backend_Infraestructure.Repositories
             return await _context.Employees.AsNoTracking().CountAsync(cancellationToken);
         }
 
+        public async Task<List<Employee>> GetAllFromUserAsync(Guid userId, int? page, int? size, CancellationToken cancellationToken)
+        {
+            var query = _context.Employees.AsNoTracking().Where(x => x.UserId == userId);
+
+            if (page.HasValue && size.HasValue)
+            {
+                query = query.Skip((page.Value - 1) * size.Value);
+            }
+
+            if (size.HasValue)
+            {
+                query = query.Take(size.Value);
+            }
+
+            return await query.ToListAsync(cancellationToken);
+        }
+
+        public async Task<int> GetAllFromUserCountAsync(Guid userId, CancellationToken cancellationToken)
+        {
+            return await _context.Employees.AsNoTracking().Where(x => x.UserId == userId).CountAsync(cancellationToken);
+        }
+
         public async Task<Employee?> GetByIdAsync(Guid id, CancellationToken cancellationToken)
         {
             return await _context.Employees.AsNoTracking().FirstOrDefaultAsync(x => x.Id == id, cancellationToken);

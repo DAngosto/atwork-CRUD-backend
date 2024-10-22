@@ -1,7 +1,7 @@
-﻿using atwork_CRUD_backend_Application.Queries.Employee;
+﻿using atwork_CRUD_backend_Application.Queries.Employees;
 using FluentValidation;
 
-namespace atwork_CRUD_backend_Application.Validators.Queries.Employee
+namespace atwork_CRUD_backend_Application.Validators.Queries.Employees
 {
     public class GetEmployeeQueryValidator : AbstractValidator<GetEmployeeQuery>
     {

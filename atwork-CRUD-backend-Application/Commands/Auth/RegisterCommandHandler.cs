@@ -1,13 +1,10 @@
-﻿using atwork_CRUD_backend_Application.Commands.Auth;
-using atwork_CRUD_backend_Application.DTOs;
+﻿using atwork_CRUD_backend_Application.DTOs.Auth;
 using atwork_CRUD_backend_Domain.Entities;
 using atwork_CRUD_backend_Domain.Repositories;
 using atwork_CRUD_backend_Domain.Services;
-using Mapster;
 using MediatR;
-using System.ComponentModel.DataAnnotations;
 
-namespace atwork_CRUD_backend_Application.Queries.Employee
+namespace atwork_CRUD_backend_Application.Commands.Auth
 {
     public class RegisterCommandHandler : IRequestHandler<RegisterCommand, RegisterDto>
     {
@@ -39,7 +36,7 @@ namespace atwork_CRUD_backend_Application.Queries.Employee
                 throw new Exception(UserErrors.UserCreationUnavailable());
             }
 
-            return new RegisterDto() { Token = _tokenProviderService.Create(newUser) };
+            return new RegisterDto() { Token = _tokenProviderService.Create(newUser), UserId = newUser.Id };
         }
     }
 }

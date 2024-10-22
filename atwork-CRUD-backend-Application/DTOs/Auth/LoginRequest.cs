@@ -1,4 +1,4 @@
-﻿namespace atwork_CRUD_backend_Application.DTOs
+﻿namespace atwork_CRUD_backend_Application.DTOs.Auth
 {
     public class LoginRequest
     {

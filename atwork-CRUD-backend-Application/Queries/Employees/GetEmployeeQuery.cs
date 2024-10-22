@@ -1,6 +1,6 @@
-﻿using atwork_CRUD_backend_Application.DTOs.Employee;
+﻿using atwork_CRUD_backend_Application.DTOs.Employees;
 
-namespace atwork_CRUD_backend_Application.Queries.Employee
+namespace atwork_CRUD_backend_Application.Queries.Employees
 {
     public class GetEmployeeQuery : IQuery<EmployeeDto>
     {

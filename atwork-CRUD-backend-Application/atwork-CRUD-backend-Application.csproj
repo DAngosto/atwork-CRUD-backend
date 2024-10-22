@@ -8,7 +8,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Commands\Employee\" />
+    <Folder Include="Commands\Employees\" />
   </ItemGroup>
 
   <ItemGroup>
