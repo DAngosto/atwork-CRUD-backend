@@ -23,6 +23,7 @@ namespace atwork_CRUD_backend.Controllers
         }
 
         [HttpGet("GetAllCountries")]
+        [ResponseCache(Duration = 3600, Location = ResponseCacheLocation.Any)]
         [ProducesResponseType(typeof(CountryDto[]), (int)HttpStatusCode.OK)]
         [ProducesResponseType(typeof(ExceptionResponse), (int)HttpStatusCode.NotFound)]
         [ProducesResponseType(typeof(ExceptionResponse), (int)HttpStatusCode.BadRequest)]
