@@ -12,7 +12,6 @@
         public int WellnessScore { get; set; }
         public int ProductivityScore { get; set; }
         public required string Address { get; set; }
-        public DateTime LastCheckIn { get; set; }
         public required string Phone { get; set; }
         public required string CountryId { get; set; }
         public required string CountryName { get; set; }
