@@ -18,8 +18,8 @@ namespace atwork_CRUD_backend_Infraestructure
             base.OnModelCreating(modelBuilder);
 
             modelBuilder.Entity<Employee>()
-           .HasOne(e => e.Country)      
-           .WithMany()                    
+           .HasOne(e => e.Country)
+           .WithMany()
            .HasForeignKey(e => e.CountryId);
 
             modelBuilder.Entity<User>()
@@ -27,19 +27,22 @@ namespace atwork_CRUD_backend_Infraestructure
            .WithOne(e => e.User)
            .HasForeignKey(e => e.UserId);
 
-            var countryId = Guid.NewGuid();
-
+            var usaCountryId = Guid.NewGuid();
+            var esCountryId = Guid.NewGuid();
+            var mxCountryId = Guid.NewGuid();
+            var ukCountryId = Guid.NewGuid();
+            var itCountryId = Guid.NewGuid();
             modelBuilder.Entity<Country>().HasData(
-                new Country { Id = countryId, Name = "United States", Code = "US" },
+                new Country { Id = usaCountryId, Name = "United States", Code = "US" },
                 new Country { Id = Guid.NewGuid(), Name = "Canada", Code = "CA" },
-                new Country { Id = Guid.NewGuid(), Name = "Mexico", Code = "MX" },
+                new Country { Id = mxCountryId, Name = "Mexico", Code = "MX" },
                 new Country { Id = Guid.NewGuid(), Name = "Argentina", Code = "AR" },
                 new Country { Id = Guid.NewGuid(), Name = "Brazil", Code = "BR" },
-                new Country { Id = Guid.NewGuid(), Name = "Spain", Code = "ES" },
+                new Country { Id = esCountryId, Name = "Spain", Code = "ES" },
                 new Country { Id = Guid.NewGuid(), Name = "France", Code = "FR" },
                 new Country { Id = Guid.NewGuid(), Name = "Germany", Code = "DE" },
-                new Country { Id = Guid.NewGuid(), Name = "United Kingdom", Code = "GB" },
-                new Country { Id = Guid.NewGuid(), Name = "Italy", Code = "IT" },
+                new Country { Id = ukCountryId, Name = "United Kingdom", Code = "GB" },
+                new Country { Id = itCountryId, Name = "Italy", Code = "IT" },
                 new Country { Id = Guid.NewGuid(), Name = "Australia", Code = "AU" },
                 new Country { Id = Guid.NewGuid(), Name = "Japan", Code = "JP" },
                 new Country { Id = Guid.NewGuid(), Name = "South Korea", Code = "KR" },
@@ -96,95 +99,98 @@ namespace atwork_CRUD_backend_Infraestructure
                 new Country { Id = Guid.NewGuid(), Name = "Bangladesh", Code = "BD" }
             );
 
-            var userId = Guid.NewGuid(); 
-
+            var userId = Guid.NewGuid();
             modelBuilder.Entity<User>().HasData(
                 new User
                 {
                     Id = userId,
-                    Email = "test@gmail.com",
-                    Password = "5GeULLC+4uTTtMp1mwP6YDdeWmNBMWNRdpAJPzzLv8w=:yl8ysCaor8YAmaHVNIDXfw==", //"string"
-                    Company = "Example Corp",
+                    Email = "admin@admin.com",
+                    Password = "FYQDyPXS8y1wQDYk5DCg9TD76MTXzAcUNwXtB60/U6k=:DHKYQTZuvgdAF/9cD3E4Xw==", //"admin"
+                    Company = "Atwork",
                     Phone = "123-456-7890",
                     PictureUrl = "https://primefaces.org/cdn/primeng/images/demo/avatar/amyelsner.png"
-                });
+                }
+            );
 
             modelBuilder.Entity<Employee>().HasData(
                 new Employee
                 {
                     Id = Guid.NewGuid(),
                     FirstName = "John",
-                    LastName = "Doe",
-                    Email = "john.doe@example.com",
+                    LastName = "Smith",
+                    Email = "john.smith@atwork.com",
                     JobTitle = "Developer",
                     WellnessScore = 85,
                     ProductivityScore = 90,
-                    Address = "123 Main St",
-                    Phone = "654-456-453",
-                    CountryId = countryId,
+                    Address = "123 Main St, New York",
+                    Phone = "123-456-7890",
+                    CountryId = usaCountryId,
                     UserId = userId,
                     PictureUrl = "https://primefaces.org/cdn/primeng/images/demo/avatar/asiyajavayant.png"
-
                 },
                 new Employee
                 {
                     Id = Guid.NewGuid(),
-                    FirstName = "Jane",
-                    LastName = "Smith",
-                    Email = "jane.smith@example.com",
-                    JobTitle = "Manager",
+                    FirstName = "Carlos",
+                    LastName = "Gómez",
+                    SecondLastName = "Ruiz",
+                    Email = "carlos.gomez@atwork.com",
+                    JobTitle = "Project Manager",
                     WellnessScore = 80,
                     ProductivityScore = 85,
-                    Address = "456 Market St",
-                    Phone = "654-456-453",
-                    CountryId = countryId,
+                    Address = "Calle Mayor, 45, Madrid",
+                    Phone = "654-321-987",
+                    CountryId = esCountryId,
                     UserId = userId,
                     PictureUrl = "https://primefaces.org/cdn/primeng/images/demo/avatar/onyamalimba.png"
                 },
                 new Employee
                 {
                     Id = Guid.NewGuid(),
-                    FirstName = "Alice",
-                    LastName = "Johnson",
-                    Email = "alice.johnson@example.com",
-                    JobTitle = "Analyst",
+                    FirstName = "Giovanni",
+                    LastName = "Rossi",
+                    SecondLastName = "Conti",
+                    Email = "giovanni.rossi@atwork.com",
+                    JobTitle = "Designer",
                     WellnessScore = 75,
                     ProductivityScore = 88,
-                    Address = "789 Elm St",
-                    Phone = "654-456-453",
-                    CountryId = countryId,
+                    Address = "Via Roma, 22, Rome",
+                    Phone = "555-987-654",
+                    CountryId = itCountryId,
                     UserId = userId,
                     PictureUrl = "https://primefaces.org/cdn/primeng/images/demo/avatar/ionibowcher.png"
                 },
                 new Employee
                 {
                     Id = Guid.NewGuid(),
-                    FirstName = "Bob",
-                    LastName = "Brown",
-                    Email = "bob.brown@example.com",
-                    JobTitle = "Consultant",
-                    WellnessScore = 78,
-                    ProductivityScore = 80,
-                    Address = "321 Oak St",
-                    Phone = "654-456-453",
-                    CountryId = countryId,
+                    FirstName = "Emily",
+                    LastName = "Johnson",
+                    Email = "emily.johnson@atwork.co.uk",
+                    JobTitle = "Analyst",
+                    WellnessScore = 90,
+                    ProductivityScore = 92,
+                    Address = "456 Queen St, London",
+                    Phone = "020-1234-5678",
+                    CountryId = ukCountryId,
                     UserId = userId,
                     PictureUrl = "https://primefaces.org/cdn/primeng/images/demo/avatar/xuxuefeng.png"
                 },
                 new Employee
                 {
                     Id = Guid.NewGuid(),
-                    FirstName = "Charlie",
-                    LastName = "Davis",
-                    Email = "charlie.davis@example.com",
-                    JobTitle = "Designer",
-                    WellnessScore = 82,
-                    ProductivityScore = 92,
-                    Address = "654 Pine St",
-                    Phone = "654-456-453",
-                    CountryId = countryId,
-                    UserId = userId
-                });
+                    FirstName = "Luis",
+                    LastName = "Hernández",
+                    SecondLastName = "Pérez",
+                    Email = "luis.hernandez@atwork.com",
+                    JobTitle = "Sales Manager",
+                    WellnessScore = 78,
+                    ProductivityScore = 83,
+                    Address = "Avenida Reforma, 100, Ciudad de México",
+                    Phone = "55-1234-5678",
+                    CountryId = mxCountryId,
+                    UserId = userId,
+                }
+            );
         }
     }
 }
