@@ -1,6 +1,5 @@
 ﻿using atwork_CRUD_backend_Domain.Entities;
 using System.Net.Mail;
-using Xunit;
 using Assert = Xunit.Assert;
 
 namespace atwork_CRUD_backend_Tests.DomainTests
