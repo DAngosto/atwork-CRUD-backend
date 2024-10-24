@@ -18,15 +18,20 @@ namespace atwork_CRUD_backend_Infraestructure
             base.OnModelCreating(modelBuilder);
 
             modelBuilder.Entity<Employee>()
-           .HasOne(e => e.Country)
-           .WithMany()
-           .HasForeignKey(e => e.CountryId);
+               .HasOne(e => e.Country)
+               .WithMany()
+               .HasForeignKey(e => e.CountryId);
 
             modelBuilder.Entity<User>()
-           .HasMany(e => e.Employees)
-           .WithOne(e => e.User)
-           .HasForeignKey(e => e.UserId);
+               .HasMany(e => e.Employees)
+               .WithOne(e => e.User)
+               .HasForeignKey(e => e.UserId);
 
+            SeedTestData(modelBuilder);
+        }
+
+        private static void SeedTestData(ModelBuilder modelBuilder)
+        {
             var usaCountryId = Guid.NewGuid();
             var esCountryId = Guid.NewGuid();
             var mxCountryId = Guid.NewGuid();

@@ -1,9 +1,8 @@
 using atwork_CRUD_backend.Middlewares;
 using atwork_CRUD_backend.ServiceCollectionExtensions;
 using atwork_CRUD_backend_Infraestructure;
-using Serilog;
 
-var builder = WebApplication.CreateBuilder(args);
+var builder = WebApplication.CreateBuilder(args); 
 
 // Load custom services configuration
 builder.Services.AddFrontendCORSPolicy();
@@ -46,3 +45,5 @@ app.UseMiddleware<ExceptionHandlerMiddleware>();
 app.UseAuthorization();
 
 app.Run();
+
+public partial class Program { }
