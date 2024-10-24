@@ -70,6 +70,18 @@ namespace atwork_CRUD_backend.Controllers
             );
         }
 
+        [HttpPost("DeleteEmployees")]
+        [ProducesResponseType((int)HttpStatusCode.NoContent)]
+        [ProducesResponseType(typeof(ExceptionResponse), (int)HttpStatusCode.BadRequest)]
+        [ProducesResponseType((int)HttpStatusCode.Unauthorized)]
+        [ProducesResponseType(typeof(ExceptionResponse), (int)HttpStatusCode.InternalServerError)]
+        public async Task<IActionResult> DeleteEmployees([FromBody] DeleteEmployeesRequest request)
+        {
+            var command = new DeleteEmployeesCommand(request);
+            await _mediator.Send(command);
+            return NoContent();
+        }
+
         [HttpPut]
         [ProducesResponseType(typeof(EmployeeDto), (int)HttpStatusCode.OK)]
         [ProducesResponseType(typeof(ExceptionResponse), (int)HttpStatusCode.NotFound)]
@@ -92,13 +104,13 @@ namespace atwork_CRUD_backend.Controllers
         }
 
         [HttpDelete]
-        [ProducesResponseType( (int)HttpStatusCode.NoContent)]
+        [ProducesResponseType((int)HttpStatusCode.NoContent)]
         [ProducesResponseType(typeof(ExceptionResponse), (int)HttpStatusCode.BadRequest)]
         [ProducesResponseType((int)HttpStatusCode.Unauthorized)]
         [ProducesResponseType(typeof(ExceptionResponse), (int)HttpStatusCode.InternalServerError)]
-        public async Task<IActionResult> Delete([FromBody] DeleteEmployeesRequest request)
+        public async Task<IActionResult> Delete(Guid employeeId)
         {
-            var command = new DeleteEmployeesCommand(request);
+            var command = new DeleteEmployeeCommand(employeeId);
             await _mediator.Send(command);
             return NoContent();
         }
